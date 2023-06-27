@@ -5,7 +5,7 @@ CC			= c++
 FLAGS		= -Wall -Wextra -Werror -std=c++98
 RM			= rm -rf
 
-OBJDIR = .objs
+OBJDIR = objs
 
 HEADERS		= Contact.hpp PhoneBook.hpp
 SRC			= main.cpp Contact.cpp PhoneBook.cpp
