@@ -1,5 +1,5 @@
 
-NAME		= PhoneBook
+NAME		= zombieHorde
 	
 CC			= c++
 FLAGS		= -Wall -Wextra -Werror -std=c++98
@@ -7,8 +7,8 @@ RM			= rm -rf
 
 OBJDIR = objs
 
-HEADERS		= Contact.hpp PhoneBook.hpp
-SRC			= main.cpp Contact.cpp PhoneBook.cpp
+HEADERS		= Zombie.hpp
+SRC			= main.cpp newZombie.cpp randomChump.cpp Zombie.cpp
 OBJ			= $(addprefix $(OBJDIR)/, $(SRC:.cpp=.o))
 
 
