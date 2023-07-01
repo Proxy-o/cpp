@@ -5,15 +5,6 @@ int main()
     Harl harl;
 
     harl.complain("debug");
-    harl.complain("info");
-    harl.complain("warning");
-    harl.complain("error");
-    harl.complain("wrong");
-    harl.complain("wrong");
-    harl.complain("wrong");
-    harl.complain("wrong");
-    harl.complain("wrong");
-    harl.complain("wrong");
 
     return 0;
 }
