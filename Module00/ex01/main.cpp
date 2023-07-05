@@ -17,8 +17,8 @@ int main()
         }
         else if (command == "SEARCH")
         {
-            phoneBook.printContacts();
-            phoneBook.search();
+            if (phoneBook.printContacts())
+                phoneBook.search();
         }
         else if (command == "EXIT")
         {

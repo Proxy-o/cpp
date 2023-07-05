@@ -27,11 +27,7 @@ void PhoneBook::search(void) const
 	int index;
 	std::string input;
 	index = -1;
-	if (this->_contacts[0].getFirstName() == "")
-	{
-		std::cout << "No contacts to display" << std::endl;
-		return;
-	}
+
 	while (index < 0 || index > 7 || this->_contacts[index].getFirstName() == "")
 	{
 		std::cout << "Please enter the index of the contact you want to see" << std::endl;
@@ -56,8 +52,13 @@ std::string PhoneBook::_getTenChars(std::string str) const
 	}
 	return (str);
 }
-void PhoneBook::printContacts(void) const
+int PhoneBook::printContacts(void) const
 {
+	if (this->_contacts[0].getFirstName() == "")
+	{
+		std::cout << "No contacts to display" << std::endl;
+		return 0;
+	}
 	std::cout << "     index|first name| last name|  nickname" << std::endl;
 	for (int i = 0; i < 8; i++)
 	{
@@ -68,5 +69,5 @@ void PhoneBook::printContacts(void) const
 		std::cout << std::setw(10) << this->_getTenChars(this->_contacts[i].getLastName()) << "|" << std::flush;
 		std::cout << std::setw(10) << this->_getTenChars(this->_contacts[i].getNickname()) << std::endl;
 	}
-	return;
+	return 1;
 }

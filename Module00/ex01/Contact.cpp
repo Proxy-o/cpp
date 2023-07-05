@@ -19,6 +19,11 @@ std::string Contact::_getSinglInput(std::string str) const
 	std::getline(std::cin, input);
 	if (std::cin.eof())
 		exit(0);
+	if (input.length() == 0)
+	{
+		std::cout << "Invalid input" << std::endl;
+		return (this->_getSinglInput(str));
+	}
 
 	return (input);
 }

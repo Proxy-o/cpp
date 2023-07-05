@@ -11,7 +11,7 @@ public:
 	PhoneBook(void);
 	~PhoneBook(void);
 	void addContact(void);
-	void printContacts(void) const;
+	int printContacts(void) const;
 	void search(void) const;
 
 private:
