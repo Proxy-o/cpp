@@ -4,38 +4,50 @@
 PhoneBook::PhoneBook(void)
 {
 	std::cout << "Welcome to Your Awesome PhoneBook" << std::endl;
-	return ;
+	return;
 }
 PhoneBook::~PhoneBook(void)
 {
 	std::cout << "Goodbye!" << std::endl;
-	return ;
+	return;
 }
 
 void PhoneBook::addContact(void)
 {
-	static int	index;
+	static int index;
 
-	this->contacts[index % 8].setData();
-	this->contacts[index % 8].setIndex(index % 8);
+	this->_contacts[index % 8].setData();
+	this->_contacts[index % 8].setIndex(index % 8);
 	index++;
-	return ;
+	return;
 }
 
 void PhoneBook::search(void) const
 {
 	int index;
+	std::string input;
 	index = -1;
-	while (index < 0 || index > 7 || this->contacts[index].getFirstName() == "")
+	if (this->_contacts[0].getFirstName() == "")
+	{
+		std::cout << "No contacts to display" << std::endl;
+		return;
+	}
+	while (index < 0 || index > 7 || this->_contacts[index].getFirstName() == "")
 	{
 		std::cout << "Please enter the index of the contact you want to see" << std::endl;
-		std::cin >> index;
+		std::getline(std::cin, input);
+		if (std::cin.eof())
+			exit(0);
+		if (input.length() == 1 && input[0] >= '0' && input[0] <= '7')
+			index = input[0] - '0';
+		else
+			std::cout << "Invalid index" << std::endl;
 	}
-	this->contacts[index].displaySingle();
-	return ;
+	this->_contacts[index].displaySingle();
+	return;
 }
 
-std::string PhoneBook::getTenChars(std::string str) const
+std::string PhoneBook::_getTenChars(std::string str) const
 {
 	if (str.length() > 10)
 	{
@@ -49,12 +61,12 @@ void PhoneBook::printContacts(void) const
 	std::cout << "     index|first name| last name|  nickname" << std::endl;
 	for (int i = 0; i < 8; i++)
 	{
-		if (this->contacts[i].getFirstName() == "")
-			break ;
-		std::cout << "         " << this->contacts[i].getIndex() << "|" << std::flush;
-		std::cout << std::setw(10) << PhoneBook::getTenChars(this->getTenChars(this->contacts[i].getFirstName())) << "|" << std::flush;
-		std::cout << std::setw(10) << PhoneBook::getTenChars(this->getTenChars(this->contacts[i].getLastName())) << "|" << std::flush;
-		std::cout << std::setw(10) << PhoneBook::getTenChars(this->getTenChars(this->contacts[i].getNickname())) << std::endl;
+		if (this->_contacts[i].getFirstName() == "")
+			break;
+		std::cout << std::setw(10) << this->_contacts[i].getIndex() << "|" << std::flush;
+		std::cout << std::setw(10) << this->_getTenChars(this->_contacts[i].getFirstName()) << "|" << std::flush;
+		std::cout << std::setw(10) << this->_getTenChars(this->_contacts[i].getLastName()) << "|" << std::flush;
+		std::cout << std::setw(10) << this->_getTenChars(this->_contacts[i].getNickname()) << std::endl;
 	}
-	return ;
+	return;
 }

@@ -2,12 +2,12 @@
 
 Contact::Contact(void)
 {
-	return ;
+	return;
 }
 
 Contact::~Contact(void)
 {
-	return ;
+	return;
 }
 
 std::string Contact::_getSinglInput(std::string str) const
@@ -15,7 +15,11 @@ std::string Contact::_getSinglInput(std::string str) const
 	std::string input;
 
 	std::cout << "Please enter " << str << std::endl;
-	std::cin >> input;
+	std::cin.clear();
+	std::getline(std::cin, input);
+	if (std::cin.eof())
+		exit(0);
+
 	return (input);
 }
 
@@ -67,6 +71,6 @@ void Contact::displaySingle(void) const
 	std::cout << "First name: " << this->_firstName << std::endl;
 	std::cout << "Last name: " << this->_lastName << std::endl;
 	std::cout << "Nickname: " << this->_nickname << std::endl;
-	std::cout << "Darkest secret: ask if i shoud add it or not ? " << this->_darkestSecret << std::endl;
+	std::cout << "Darkest secret: " << this->_darkestSecret << std::endl;
 	std::cout << "Phone number: " << this->_phoneNumber << std::endl;
 }
