@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/06 18:09:20 by otait-ta          #+#    #+#             */
+/*   Updated: 2023/07/06 18:48:37 by otait-ta         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Fixed.hpp"
 
 Fixed::Fixed(void) : _fixed_point_value(0)
@@ -49,7 +61,7 @@ float Fixed::toFloat(void) const
 {
     float result;
 
-    result = static_cast<float>((this->_fixed_point_value)) / (1 << this->_fractional_bits);
+    result = (float)((this->_fixed_point_value)) / (1 << this->_fractional_bits);
     return result;
 }
 
