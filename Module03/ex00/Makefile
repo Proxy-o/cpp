@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/07/07 16:28:48 by otait-ta          #+#    #+#              #
+#    Updated: 2023/07/07 16:28:49 by otait-ta         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 
 NAME		= ClapTrap
 	
@@ -7,8 +19,8 @@ RM			= rm -rf
 
 OBJDIR = objs
 
-HEADERS		= Fixed.hpp Point.hpp 
-SRC			= main.cpp Fixed.cpp Point.cpp bsp.cpp
+HEADERS		= ClapTrap.hpp  
+SRC			= main.cpp ClapTrap.cpp
 OBJ			= $(addprefix $(OBJDIR)/, $(SRC:.cpp=.o))
 
 
