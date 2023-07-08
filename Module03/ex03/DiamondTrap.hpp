@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   DiamondTrap.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 16:28:24 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/08 11:44:00 by otait-ta         ###   ########.fr       */
+/*   Created: 2023/07/08 13:57:36 by otait-ta          #+#    #+#             */
+/*   Updated: 2023/07/08 14:16:29 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef DIAMONDTRAP_H
+#define DIAMONDTRAP_H
+
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
-int main()
+class DiamondTrap : public ScavTrap, public FragTrap
 {
-    ScavTrap scavTrap("himeroune");
-    ScavTrap scavTrap2(scavTrap);
-    scavTrap.attack("target1");
-    scavTrap.guardGate();
-    scavTrap2.attack("target2");
-    scavTrap2.guardGate();
+private:
+    std::string _name;
 
-    return 0;
-}
+public:
+    DiamondTrap(void);
+    DiamondTrap(std::string name);
+    DiamondTrap(DiamondTrap const &src);
+    ~DiamondTrap(void);
+    DiamondTrap &operator=(DiamondTrap const &rhs);
+    void whoAmI(void);
+    void attack(std::string const &target);
+};
+
+#endif

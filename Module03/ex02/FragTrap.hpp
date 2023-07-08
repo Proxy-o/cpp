@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/07 16:28:24 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/07/08 11:44:00 by otait-ta         ###   ########.fr       */
+/*   Created: 2023/07/08 11:08:21 by otait-ta          #+#    #+#             */
+/*   Updated: 2023/07/08 11:38:14 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#ifndef FRAGTRAP_H
+#define FRAGTRAP_H
 
-int main()
+#include <iostream>
+#include "ClapTrap.hpp"
+
+class FragTrap : public ClapTrap
 {
-    ScavTrap scavTrap("himeroune");
-    ScavTrap scavTrap2(scavTrap);
-    scavTrap.attack("target1");
-    scavTrap.guardGate();
-    scavTrap2.attack("target2");
-    scavTrap2.guardGate();
+public:
+    FragTrap(void);
+    FragTrap(std::string name);
+    FragTrap(FragTrap const &src);
+    ~FragTrap(void);
+    FragTrap &operator=(FragTrap const &rhs);
+    void highFivesGuys(void);
+};
 
-    return 0;
-}
+#endif
