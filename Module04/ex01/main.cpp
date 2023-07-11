@@ -1,6 +1,5 @@
 #include "Dog.hpp"
 #include "Cat.hpp"
-#include "WrongCat.hpp"
 
 int main()
 {
@@ -18,7 +17,7 @@ int main()
     for (i = 0; i < anim_numb; i++)
         std::cout << animals[i]->getType() << std::endl;
 
-    std::cout << "====     SOUNDS =====" << std::endl;
+    std::cout << "====== SOUNDS =====" << std::endl;
     for (i = 0; i < anim_numb; i++)
         animals[i]->makeSound();
     for (i = 0; i < anim_numb; i++)
@@ -26,4 +25,15 @@ int main()
         if (animals[i])
             delete animals[i];
     }
+    Dog *dog = new Dog;
+    dog->makeSound();
+    {
+        Dog *tmp = dog;
+        tmp->makeSound();
+        
+
+    }
+    delete dog;
+
+    return (0);
 }

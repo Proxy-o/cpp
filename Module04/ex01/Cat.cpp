@@ -26,6 +26,7 @@ Cat &Cat::operator=(const Cat &right_side)
 {
     std::cout << "Cat Copy assignment operator called" << std::endl;
     this->type = right_side.type;
+    this->brain = new Brain(*right_side.brain);
     return *this;
 }
 

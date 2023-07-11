@@ -26,6 +26,7 @@ Dog &Dog::operator=(const Dog &right_side)
 {
     std::cout << "Dog Copy assignment operator called" << std::endl;
     this->type = right_side.type;
+    this->brain = new Brain(*right_side.brain);
     return *this;
 }
 

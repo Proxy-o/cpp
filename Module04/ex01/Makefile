@@ -7,8 +7,8 @@ RM			= rm -rf
 
 OBJDIR = objs
 
-HEADERS		= Animal.hpp Dog.hpp Cat.hpp WrongAnimal.hpp WrongCat.hpp Brain.hpp
-SRC			= main.cpp Animal.cpp Dog.cpp Cat.cpp WrongAnimal.cpp WrongCat.cpp Brain.cpp
+HEADERS		= Animal.hpp Dog.hpp Cat.hpp  Brain.hpp
+SRC			= main.cpp Animal.cpp Dog.cpp Cat.cpp  Brain.cpp
 OBJ			= $(addprefix $(OBJDIR)/, $(SRC:.cpp=.o))
 
 
