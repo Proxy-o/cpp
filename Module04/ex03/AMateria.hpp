@@ -1,8 +1,10 @@
-#ifndef AMAETERIA_HPP
-#define AMAETERIA_HPP
+#ifndef AMATERIA_HPP
+# define AMATERIA_HPP
 
 #include <iostream>
+#include "ICharacter.hpp"
 
+class ICharacter;
 class AMateria
 {
     protected:
@@ -21,4 +23,4 @@ class AMateria
         virtual void use(ICharacter& target);
 };
 
-#endif // AMAETERIA_HPP //
+#endif 

@@ -60,6 +60,10 @@ void MateriaSource::learnMateria(AMateria *m)
         _materia[_count] = m;
         _count++;
     }
+    else
+    {
+        std::cout << "There is no more space for new materia in MateriaSource" << std::endl;
+    }
     return;
 }
 
@@ -72,6 +76,7 @@ AMateria *MateriaSource::createMateria(std::string const &type)
             return _materia[i]->clone();
         }
     }
+    std::cout << "Materia " << type << " not found" << std::endl;
     return NULL;
 }
 

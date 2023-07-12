@@ -54,12 +54,14 @@ std::string const &Character::getName() const
 
 void Character::equip(AMateria *m)
 {
+        std::cout << "Materia " << m->getType() << " equipped" << std::endl;
     if (this->_count < 4)
     {
         this->_inventory[this->_count] = m;
         this->_count++;
     }
-    return;
+    else
+        std::cout << "Inventory is full" << std::endl;
 }
 
 void Character::unequip(int idx)

@@ -8,7 +8,7 @@ RM			= rm -rf
 OBJDIR = objs
 
 HEADERS		= MateriaSource.hpp AMateria.hpp ICharacter.hpp Character.hpp Cure.hpp Ice.hpp IMateriaSource.hpp 
-SRC			= main.cpp MateriaSource.cpp AMateria.cpp ICharacter.cpp Character.cpp Cure.cpp Ice.cpp IMateriaSource.cpp
+SRC			= main.cpp MateriaSource.cpp AMateria.cpp  Character.cpp Cure.cpp Ice.cpp 
 OBJ			= $(addprefix $(OBJDIR)/, $(SRC:.cpp=.o))
 
 
