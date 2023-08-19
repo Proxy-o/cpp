@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+class Form;
 class Bureaucrat
 {
 private:
@@ -30,7 +31,9 @@ public:
     public:
         virtual const char *what() const throw();
     };
+    void signForm(Form &form);
 };
 std::ostream &operator<<(std::ostream &out, Bureaucrat &b);
 std::ostream &operator<<(std::ostream &out, Bureaucrat *b);
+
 #endif
