@@ -7,8 +7,8 @@ RM			= rm -rf
 
 OBJDIR = objs
 
-HEADERS		= Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp
-SRC			= main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp
+HEADERS		= Bureaucrat.hpp AForm.hpp ShrubberyCreationForm.hpp RobotomyRequestForm.hpp 
+SRC			= main.cpp Bureaucrat.cpp AForm.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp 
 OBJ			= $(addprefix $(OBJDIR)/, $(SRC:.cpp=.o))
 
 
