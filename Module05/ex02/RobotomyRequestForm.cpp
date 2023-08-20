@@ -18,11 +18,11 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &r
     return *this;
 }
 
-void RobotomyRequestForm::apply_execute(Bureaucrat const &executor) const
+void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
     try
     {
-        this->execute(executor);
+        this->check_requirements(executor);
         static int i;
         if (i % 2 == 0)
             std::cout << this->_target << " has been robotomized successfully " << std::endl;

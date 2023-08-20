@@ -38,8 +38,8 @@ public:
 
     void beSigned(Bureaucrat &bureaucrat);
 
-    void execute(Bureaucrat const &executor) const;
-    virtual void apply_execute(Bureaucrat const &executor) const = 0;
+    void check_requirements(Bureaucrat const &executor) const;
+    virtual void execute(Bureaucrat const &executor) const = 0;
 };
 
 std::ostream &operator<<(std::ostream &o, AForm &f);

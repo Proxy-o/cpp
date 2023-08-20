@@ -15,7 +15,7 @@ public:
     RobotomyRequestForm(const RobotomyRequestForm &to_copy);
     virtual ~RobotomyRequestForm();
     RobotomyRequestForm &operator=(const RobotomyRequestForm &right_side);
-    void apply_execute(Bureaucrat const &executor) const;
+    void execute(Bureaucrat const &executor) const;
 };
 
 #endif

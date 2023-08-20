@@ -108,7 +108,7 @@ void AForm::beSigned(Bureaucrat &brcrt)
     return;
 }
 
-void AForm::execute(Bureaucrat const &executor) const
+void AForm::check_requirements(Bureaucrat const &executor) const
 {
     if (this->get_is_signed() == false)
         throw(AForm::FormNotSignedException());

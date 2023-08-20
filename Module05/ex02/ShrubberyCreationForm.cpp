@@ -18,11 +18,11 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
     return *this;
 }
 
-void ShrubberyCreationForm::apply_execute(Bureaucrat const &executor) const
+void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
     try
     {
-        this->execute(executor);
+        this->check_requirements(executor);
         std::string name = this->_target + "_shrubbery";
         std::ofstream file(name.c_str());
         file << "                  /\\\n";
