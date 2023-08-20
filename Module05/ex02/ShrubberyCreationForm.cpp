@@ -20,27 +20,22 @@ ShrubberyCreationForm &ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-    try
-    {
-        this->check_requirements(executor);
-        std::string name = this->_target + "_shrubbery";
-        std::ofstream file(name.c_str());
-        file << "                  /\\\n";
-        file << "                 //\\\\\n";
-        file << "                ///\\\\\\\n";
-        file << "               ////\\\\\\\\\n";
-        file << "              /////\\\\\\\\\\\n";
-        file << "             //////\\\\\\\\\\\\\n";
-        file << "            ///////\\\\\\\\\\\\\\\n";
-        file << "           ////////\\\\\\\\\\\\\\\\\n";
-        file << "          /////////\\\\\\\\\\\\\\\\\\\n";
-        file << "         //////////\\\\\\\\\\\\\\\\\\\\\n";
-        file << "               |||\n";
-        file << "               |||\n";
-        file << "               |||\n";
-    }
-    catch (std::exception &e)
-    {
-        std::cout << e.what();
-    }
+
+    this->check_requirements(executor);
+    std::string name = this->_target + "_shrubbery";
+    std::ofstream file(name.c_str());
+    file << "                  /\\\n";
+    file << "                 //\\\\\n";
+    file << "                ///\\\\\\\n";
+    file << "               ////\\\\\\\\\n";
+    file << "              /////\\\\\\\\\\\n";
+    file << "             //////\\\\\\\\\\\\\n";
+    file << "            ///////\\\\\\\\\\\\\\\n";
+    file << "           ////////\\\\\\\\\\\\\\\\\n";
+    file << "          /////////\\\\\\\\\\\\\\\\\\\n";
+    file << "         //////////\\\\\\\\\\\\\\\\\\\\\n";
+    file << "               |||\n";
+    file << "               |||\n";
+    file << "               |||\n";
+    file << std::endl;
 }

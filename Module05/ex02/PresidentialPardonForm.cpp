@@ -20,13 +20,7 @@ PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPard
 
 void PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
-    try
-    {
-        this->check_requirements(executor);
-        std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
+
+    this->check_requirements(executor);
+    std::cout << this->_target << " has been pardoned by Zaphod Beeblebrox" << std::endl;
 }

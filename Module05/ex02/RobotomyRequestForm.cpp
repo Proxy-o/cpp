@@ -20,18 +20,12 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(const RobotomyRequestForm &r
 
 void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
-    try
-    {
-        this->check_requirements(executor);
-        static int i;
-        if (i % 2 == 0)
-            std::cout << this->_target << " has been robotomized successfully " << std::endl;
-        else
-            std::cout << "the robotomy failed" << std::endl;
-        i++;
-    }
-    catch (std::exception &e)
-    {
-        std::cout << e.what() << std::endl;
-    }
+
+    this->check_requirements(executor);
+    static int i;
+    if (i % 2 == 0)
+        std::cout << this->_target << " has been robotomized successfully " << std::endl;
+    else
+        std::cout << "the robotomy failed" << std::endl;
+    i++;
 }
