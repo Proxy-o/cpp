@@ -1,16 +1,9 @@
-#include <iostream>
-class A
+#include "ScalarConverter.hpp"
+
+int main(int argc, char **argv)
 {
-};
-class B : public A
-{
-};
-int main()
-{
-    // int a = 56;
-    A *a;
-    B *b;
-    b = (B *)a;
+    (void)argc;
+    ScalarConverter::convert(argv[1]);
 
     return 0;
 }

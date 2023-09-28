@@ -7,8 +7,8 @@ RM			= rm -rf
 
 OBJDIR = objs
 
-HEADERS		= ScalarConversion.hpp
-SRC			= main.cpp ScalarConversion.cpp
+HEADERS		= ScalarConverter.hpp
+SRC			= main.cpp ScalarConverter.cpp
 OBJ			= $(addprefix $(OBJDIR)/, $(SRC:.cpp=.o))
 
 
