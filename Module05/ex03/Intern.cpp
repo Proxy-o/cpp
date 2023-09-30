@@ -33,7 +33,7 @@ const char *Intern::FormNotValideException::what() const throw()
 
 AForm *Intern::makeForm(std::string name, std::string target)
 {
-    std::string forms_name[] = {"PresidentialPardonForm", "RobotomyRequestForm", "ShrubberyCreationForm"};
+    std::string forms_name[] = {"presidential pardon", "robotomy request", "shrubbery creation"};
 
     int i;
     for (i = 0; i < 3; i++)

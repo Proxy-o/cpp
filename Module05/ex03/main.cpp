@@ -11,7 +11,7 @@ int main()
         Bureaucrat b("othmane", 1);
         Intern i;
         AForm *f;
-        f = i.makeForm("ShrubberyCreationForm", "home");
+        f = i.makeForm("robotomy request", "home");
         b.signForm(*f);
         b.executeForm(*f);
         delete f;
