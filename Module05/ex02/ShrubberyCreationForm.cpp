@@ -38,4 +38,5 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
     file << "               |||\n";
     file << "               |||\n";
     file << std::endl;
+    file.close();
 }
