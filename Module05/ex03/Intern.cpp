@@ -34,28 +34,17 @@ const char *Intern::FormNotValideException::what() const throw()
 AForm *Intern::makeForm(std::string name, std::string target)
 {
     std::string forms_name[] = {"presidential pardon", "robotomy request", "shrubbery creation"};
+    AForm *forms[] = {new PresidentialPardonForm(target), new RobotomyRequestForm(target), new ShrubberyCreationForm(target)};
 
-    int i;
-    for (i = 0; i < 3; i++)
+    int i = 0;
+    for (; i < 3; i++)
     {
-        if (forms_name[i] == name)
+        if (forms_name[i] != name)
+            delete forms[i];
+        else
             break;
     }
-
-    AForm *form;
-    switch (i)
-    {
-    case 0:
-        form = new PresidentialPardonForm(target);
-        break;
-    case 1:
-        form = new RobotomyRequestForm(target);
-        break;
-    case 2:
-        form = new ShrubberyCreationForm(target);
-        break;
-    default:
-        throw Intern::FormNotValideException();
-    }
-    return form;
+    if (i == 3)
+        throw FormNotValideException();
+    return (forms[i]);
 }
