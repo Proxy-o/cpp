@@ -3,9 +3,9 @@
 int main()
 {
     std::cout << "------------test 1----------" << std::endl;
+    Bureaucrat a("othmane", 149);
     try
     {
-        Bureaucrat a("othmane", 149);
         std::cout << a;
         a.decrementGrade();
         a.decrementGrade();
@@ -14,6 +14,7 @@ int main()
     {
         std::cerr << e.what() << std::endl;
     }
+
     // return 0;
     std::cout << "------------test 2----------" << std::endl;
     try

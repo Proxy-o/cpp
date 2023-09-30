@@ -57,18 +57,18 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 void Bureaucrat::incrementGrade()
 {
 
-    this->_grade -= 1;
-    std::cout << "incrementing Grade" << std::endl;
-    if (this->_grade < 1)
+    if (this->_grade == 1)
         throw Bureaucrat::GradeTooHighException();
+    std::cout << "incrementing Grade" << std::endl;
+    this->_grade -= 1;
 }
 
 void Bureaucrat::decrementGrade()
 {
-    this->_grade += 1;
-    std::cout << "decrementing Grade" << std::endl;
-    if (this->_grade > 150)
+    if (this->_grade == 150)
         throw Bureaucrat::GradeTooLowException();
+    std::cout << "decrementing Grade" << std::endl;
+    this->_grade += 1;
 }
 
 std::ostream &operator<<(std::ostream &out, Bureaucrat &b)
