@@ -28,7 +28,7 @@ int main()
     {
         std::cerr << e.what() << std::endl;
     }
-    std::cout << "------------test 2----------" << std::endl;
+    std::cout << "------------test 3----------" << std::endl;
     try
     {
         Bureaucrat b("name3", 156);
