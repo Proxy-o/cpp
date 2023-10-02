@@ -6,10 +6,9 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/29 11:32:58 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/09/29 11:32:59 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/10/02 17:47:08 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "ScalarConverter.hpp"
 
@@ -59,11 +58,11 @@ bool ScalarConverter::is_valid_float(std::string str)
     size_t i;
 
     last_digit = str.length() - 1;
-    if (str.at(last_digit) != 'f')
+    if (str[last_digit] != 'f')
         return (false);
     if (!str.compare("-inff") || !str.compare("+inff") || !str.compare("nanf"))
         return (true);
-    if (str.at(0) == '+' || str.at(0) == '-')
+    if (str[0] == '+' || str[0] == '-')
         i = 1;
     else
         i = 0;
@@ -85,7 +84,7 @@ double ScalarConverter::is_valid_double(std::string str)
     last_digit = str.length() - 1;
     if (!str.compare("-inf") || !str.compare("+inf") || !str.compare("nan"))
         return (true);
-    if (str.at(0) == '+' || str.at(0) == '-')
+    if (str[0] == '+' || str[0] == '-')
         i = 1;
     else
         i = 0;
