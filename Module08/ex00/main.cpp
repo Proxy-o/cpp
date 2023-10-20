@@ -19,4 +19,9 @@ int main()
         std::cout << "did not found it " << std::endl;
     else
         std::cout << *a << std::endl;
+    a = easyfind(c, 79);
+    if (a == c.end())
+        std::cout << "did not found it " << std::endl;
+    else
+        std::cout << *a << std::endl;
 }
