@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 11:26:12 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/10/20 12:45:06 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/10/20 13:51:05 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,30 @@ int main()
     MutantStack<int> mstack;
     mstack.push(5);
     mstack.push(17);
-    std::cout << mstack.top() << std::endl;
+    std::cout << "top: " << mstack.top() << std::endl;
     mstack.pop();
-    std::cout << mstack.size() << std::endl;
-    mstack.push(3);
-    mstack.push(5);
-    mstack.push(737);
-    //[...]
-    mstack.push(0);
+    std::cout << "new top: " << mstack.top() << std::endl;
+    std::cout << "size: " << mstack.size() << std::endl;
+    mstack.push(100);
+    mstack.push(13);
+    mstack.push(37);
+    mstack.push(-9);
     MutantStack<int>::iterator it = mstack.begin();
     MutantStack<int>::iterator ite = mstack.end();
     ++it;
     --it;
+    std::cout << "stack: ";
     while (it != ite)
     {
-        std::cout << *it << std::endl;
+        std::cout << *it << " ";
         ++it;
     }
-    // std::stack<int> s(mstack);
+    std::cout << std::endl;
+    std::stack<int> s(mstack);
+    std::cout << "top: " << s.top() << std::endl;
+    std::cout << "size: " << s.size() << std::endl;
+    s.pop();
+    std::cout << "new top: " << s.top() << std::endl;
+    std::cout << "new size: " << s.size() << std::endl;
     return 0;
 }
