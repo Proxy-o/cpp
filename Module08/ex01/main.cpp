@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 16:56:09 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/10/20 10:11:44 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/10/20 10:55:46 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,9 @@ int main()
     {
         std::srand(static_cast<unsigned int>(std::time(nullptr)));
 
-        Span sp = Span(100);
-        sp.fillWithRandomNumbers(3);
+        Span sp = Span(1000);
+        sp.fillWithRandomNumbers(1000);
         sp.removeDuplicates();
-        sp.printVector();
         std::cout << sp.shortestSpan() << std::endl;
         std::cout << sp.longestSpan() << std::endl;
     }

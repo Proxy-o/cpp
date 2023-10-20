@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/19 16:10:01 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/10/20 10:07:54 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/10/20 10:56:56 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ public:
     Span &operator=(Span const &rhs);
 
     void addNumber(int nbr);
+    void fillWithRandomNumbers(unsigned int n);
     int shortestSpan();
     int longestSpan();
-    void fillWithRandomNumbers(unsigned int n);
     void printVector();
     void removeDuplicates();
 
