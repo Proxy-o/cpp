@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 11:26:12 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/10/20 13:51:05 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/10/20 13:53:26 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,11 @@ int main()
     std::stack<int> s(mstack);
     std::cout << "top: " << s.top() << std::endl;
     std::cout << "size: " << s.size() << std::endl;
-    s.pop();
-    std::cout << "new top: " << s.top() << std::endl;
-    std::cout << "new size: " << s.size() << std::endl;
+
+    while (!s.empty())
+    {
+        std::cout << s.top() << " ";
+        s.pop();
+    }
     return 0;
 }
