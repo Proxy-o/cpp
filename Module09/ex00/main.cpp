@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 12:04:10 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/10/22 17:07:01 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/10/22 20:14:32 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int main(int argc, char **argv)
         return 1;
     }
     std::string file = argv[1];
-    if (BitcoinExchange::read_inpute())
+    if (BitcoinExchange::read_data())
         return 1;
     // BitcoinExchange::print_rates();
     BitcoinExchange::exchange(file);
