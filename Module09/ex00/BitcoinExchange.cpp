@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 11:40:18 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/10/22 20:28:45 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/10/23 11:46:25 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int BitcoinExchange::read_data()
     std::string line;
     if (!db.is_open())
     {
-        std::cerr << "Error: could not open file" << std::endl;
+        std::cerr << "DB Error: could not open file" << std::endl;
         return 1;
     }
     std::getline(db, line);
@@ -102,18 +102,23 @@ int BitcoinExchange::read_data()
         std::string rate = line.substr(line.find(',') + 1);
         if (date.empty() || rate.empty())
         {
-            std::cerr << "Error: invalid line  format" << line << std::endl;
+            std::cerr << "DB Error: invalid line  format" << line << std::endl;
             continue;
         }
         if (!is_valid_date(date))
         {
-            std::cerr << "Error: invalid date : " << line << std::endl;
+            std::cerr << "DB Error: invalid date : " << line << std::endl;
+            continue;
+        }
+        if (rate.empty() || rate.find_first_not_of("0123456789.") != std::string::npos)
+        {
+            std::cerr << "DB Error: invalid value : " << rate << std::endl;
             continue;
         }
         double rateDouble = std::stof(rate);
         if (rateDouble < 0)
         {
-            std::cerr << "Error: invalid rate : " << rateDouble << std::endl;
+            std::cerr << "DB Error: invalid rate : " << rateDouble << std::endl;
             continue;
         }
         BitcoinExchange::_rates.insert(std::pair<std::string, double>(date, rateDouble));
@@ -130,6 +135,16 @@ bool BitcoinExchange::check_format(std::string &line)
         return false;
     }
     if (line.find('|') != line.rfind('|'))
+    {
+        std::cerr << "Error: bad input = > " << line << std::endl;
+        return false;
+    }
+    if (line.find('|') == line.length() - 1)
+    {
+        std::cerr << "Error: bad input = > " << line << std::endl;
+        return false;
+    }
+    if (line.find('|') == 0)
     {
         std::cerr << "Error: bad input = > " << line << std::endl;
         return false;
@@ -186,7 +201,20 @@ void BitcoinExchange::exchange(std::string &file)
             continue;
         }
         std::string date = line.substr(0, line.find('|'));
-        std::string value = line.substr(line.find('|') + 1);
+        if (date.at(date.length() - 2) == ' ')
+        {
+            std::cerr << "Error: bad input = > " << line << std::endl;
+            continue;
+        }
+
+        std::string value = line.substr(line.find('|') + 2);
+        if (value.empty() || value.find_first_not_of("0123456789.") != std::string::npos ||
+            value.find("..") != std::string::npos || value.find('.') != value.rfind('.'))
+        {
+            std::cerr << "Error: bad input : " << line << std::endl;
+            continue;
+        }
+
         double valueDouble = std::stof(value);
         if (valueDouble < 0)
         {
