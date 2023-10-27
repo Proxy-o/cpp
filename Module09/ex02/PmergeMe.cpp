@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 12:48:36 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/10/24 17:30:12 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/10/27 11:49:00 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void PmergeMe::init_vector(char** str, int& size)
         std::string tmp = str[i];
         if (tmp.find_first_not_of("0123456789") != std::string::npos)
             throw BadInputException();
-        int tmpInt = std::stol(tmp);
+        int tmpInt = std::stod(tmp);
         const int MAX_INT = std::numeric_limits<int>::max();
         if (tmpInt < 0 || tmpInt > MAX_INT)
             throw BadInputException();
@@ -155,12 +155,12 @@ void PmergeMe::vector_merge(char** argv, int argc)
     double usec = ((PmergeMe::_vTimeEnd.tv_usec - _vTimeStart.tv_usec));
     vClock = (vClock + usec);
 
-    std::cout << "Before: ";
+    std::cout << "\033[1;32mVECTOR ==> Before: \033[0m";
     PmergeMe::print_vector(PmergeMe::_vctr);
-    std::cout << "After : ";
+    std::cout << "\033[1;32mVECTOR ==> After : \033[0m";
     PmergeMe::print_vector(PmergeMe::_sorted);
 
-    std::cout << "Time : " << vClock << " microseconds" << std::endl;
+    std::cout << "\033[1;32mVECTOR ==> Time : " << vClock << " microseconds\033[0m" << std::endl;
 }
 
 
@@ -175,7 +175,7 @@ void PmergeMe::init_deque(char** str, int& size)
         std::string tmp = str[i];
         if (tmp.find_first_not_of("0123456789") != std::string::npos)
             throw BadInputException();
-        int tmpInt = std::stol(tmp);
+        int tmpInt = std::stod(tmp);
         const int MAX_INT = std::numeric_limits<int>::max();
         if (tmpInt < 0 || tmpInt > MAX_INT)
             throw BadInputException();
@@ -265,10 +265,10 @@ void PmergeMe::deque_merge(char** argv, int argc)
     double usec = ((PmergeMe::_deqTimeEnd.tv_usec - _deqTimeStart.tv_usec));
     deqClock = (deqClock + usec);
 
-    std::cout << "Before: ";
+    std::cout << "\033[1;31mDEQUE ==> Before: \033[0m";
     PmergeMe::print_deque(PmergeMe::_deq);
-    std::cout << "After : ";
+    std::cout << "\033[1;31mDEQUE ==> After : \033[0m";
     PmergeMe::print_deque(PmergeMe::_sorted_deq);
 
-    std::cout << "Time : " << deqClock << " microseconds" << std::endl;
+    std::cout << "\033[1;31mDEQUE ==> Time : " << deqClock << " microseconds\033[0m" << std::endl;
 }
