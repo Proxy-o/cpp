@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/23 17:38:27 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/10/24 11:30:40 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/10/27 10:58:03 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ RPN::RPN()
 {
 }
 
-RPN::RPN(RPN const &src)
+RPN::RPN(RPN const& src)
 {
     *this = src;
 }
 
-RPN &RPN::operator=(RPN const &rhs)
+RPN& RPN::operator=(RPN const& rhs)
 {
     if (this != &rhs)
     {
@@ -36,7 +36,7 @@ RPN &RPN::operator=(RPN const &rhs)
 RPN::~RPN()
 {
 }
-bool RPN::containsOnlySpaces(const std::string &str)
+bool RPN::containsOnlySpaces(const std::string& str)
 {
     for (std::string::const_iterator it = str.begin(); it != str.end(); ++it)
     {
@@ -48,18 +48,17 @@ bool RPN::containsOnlySpaces(const std::string &str)
     return true;
 }
 
-void RPN::init_stack(std::string &str)
+void RPN::init_stack(std::string& str)
 {
-
+    // if the str contain only -+*/
+    if (std::string("-+*/").find(str) != std::string::npos)
+        throw InvalidExpressionException();
     std::string::reverse_iterator rit = str.rbegin();
     if (rit == str.rend() || containsOnlySpaces(str))
         throw InvalidExpressionException();
-
     for (; rit != str.rend(); rit++)
     {
-        if (std::string("0123456789").find(*rit) != std::string::npos)
-            _stack.push(*rit - '0');
-        else if (std::string("-+*/").find(*rit) != std::string::npos)
+        if (std::string("0123456789-+*/").find(*rit) != std::string::npos)
             _stack.push(*rit);
         else if (*rit != ' ')
             throw InvalidExpressionException();
@@ -81,77 +80,78 @@ void RPN::print_stack()
 
 void RPN::calculate()
 {
-    std::stack<int> &tmp = _stack;
+    std::stack<int>& tmp = _stack;
     int a, b, result;
     std::stack<int> helper;
     while (tmp.empty() == false)
     {
-        if (std::string("-+*/").find(tmp.top()) != std::string::npos)
-        {
-            if (tmp.top() == '-' && helper.size() >= 2)
+        if (std::string("-+*/").find(tmp.top()) != std::string::npos && helper.size() < 2)
+            throw InvalidExpressionException();
+        else
+            if (std::string("-+*/").find(tmp.top()) != std::string::npos && helper.size() >= 2)
             {
-                a = helper.top();
-                helper.pop();
-                b = helper.top();
-                helper.pop();
-                result = b - a;
-                tmp.pop();
-                helper.push(result);
+                if (tmp.top() == '-')
+                {
+                    a = helper.top();
+                    helper.pop();
+                    b = helper.top();
+                    helper.pop();
+                    result = b - a;
+                    tmp.pop();
+                    helper.push(result);
+                }
+                else if (tmp.top() == '+')
+                {
+                    a = helper.top();
+                    helper.pop();
+                    b = helper.top();
+                    helper.pop();
+                    result = a + b;
+                    tmp.pop();
+                    helper.push(result);
+                }
+                else if (tmp.top() == '*')
+                {
+                    a = helper.top();
+                    helper.pop();
+                    b = helper.top();
+                    helper.pop();
+                    result = a * b;
+                    tmp.pop();
+                    helper.push(result);
+                }
+                else if (tmp.top() == '/')
+                {
+                    a = helper.top();
+                    helper.pop();
+                    b = helper.top();
+                    helper.pop();
+                    if (a == 0)
+                        throw ZeroDivisionException();
+                    result = b / a;
+                    tmp.pop();
+                    helper.push(result);
+                }
+                else
+                    throw InvalidExpressionException();
             }
-            else if (tmp.top() == '+' && helper.size() >= 2)
+            else if (tmp.empty() == false)
             {
-                a = helper.top();
-                helper.pop();
-                b = helper.top();
-                helper.pop();
-                result = a + b;
+                helper.push(tmp.top() - '0');
                 tmp.pop();
-                helper.push(result);
-            }
-            else if (tmp.top() == '*' && helper.size() >= 2)
-            {
-                a = helper.top();
-                helper.pop();
-                b = helper.top();
-                helper.pop();
-                result = a * b;
-                tmp.pop();
-                helper.push(result);
-            }
-            else if (tmp.top() == '/' && helper.size() >= 2)
-            {
-                a = helper.top();
-                helper.pop();
-                b = helper.top();
-                helper.pop();
-                if (a == 0)
-                    throw ZeroDivisionException();
-                result = b / a;
-                tmp.pop();
-                helper.push(result);
             }
             else
                 throw InvalidExpressionException();
-        }
-        else if (tmp.empty() == false)
-        {
-            helper.push(tmp.top());
-            if (tmp.empty() == false)
-                tmp.pop();
-        }
-        else
-            throw InvalidExpressionException();
     }
-
     std::cout << helper.top() << std::endl;
 }
 
-const char *RPN::InvalidExpressionException::what() const throw()
+const char* RPN::InvalidExpressionException::what() const throw()
 {
     return "Invalid Expression";
 }
 
-const char *RPN::ZeroDivisionException::what() const throw()
+const char* RPN::ZeroDivisionException::what() const throw()
 {
     return "Division by zero";
 }
