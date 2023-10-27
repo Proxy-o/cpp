@@ -6,7 +6,7 @@
 /*   By: otait-ta <otait-ta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/22 11:40:18 by otait-ta          #+#    #+#             */
-/*   Updated: 2023/10/23 11:46:25 by otait-ta         ###   ########.fr       */
+/*   Updated: 2023/10/27 09:55:29 by otait-ta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,23 +26,25 @@ BitcoinExchange::~BitcoinExchange()
 {
 }
 
-BitcoinExchange::BitcoinExchange(BitcoinExchange const &src)
+BitcoinExchange::BitcoinExchange(BitcoinExchange const& src)
 {
     *this = src;
 }
 
-BitcoinExchange &BitcoinExchange::operator=(BitcoinExchange const &rhs)
+BitcoinExchange& BitcoinExchange::operator=(BitcoinExchange const& rhs)
 {
     (void)rhs;
     return *this;
 }
 
-bool BitcoinExchange::is_valid_date(std::string &dateStr)
+bool BitcoinExchange::is_valid_date(std::string& dateStr)
 {
     std::tm date;
     std::istringstream dateStream(dateStr);
     char dash;
-
+    // if date is contain somthing else than numbers and dashes
+    if (dateStr.find_first_not_of("0123456789- ") != std::string::npos)
+        return false;
     if (dateStream >> date.tm_year >> dash >> date.tm_mon >> dash >> date.tm_mday)
     {
         date.tm_mon--;
@@ -70,8 +72,6 @@ bool BitcoinExchange::is_valid_date(std::string &dateStr)
             {
                 return date.tm_mday <= 30;
             }
-            // if date is lessthan btc realese
-
             return true;
         }
     }
@@ -127,7 +127,7 @@ int BitcoinExchange::read_data()
     return 0;
 }
 
-bool BitcoinExchange::check_format(std::string &line)
+bool BitcoinExchange::check_format(std::string& line)
 {
     if (line.find('|') == std::string::npos)
     {
@@ -169,7 +169,7 @@ bool BitcoinExchange::check_format(std::string &line)
     return true;
 }
 
-double BitcoinExchange::closet_rate(std::string &date)
+double BitcoinExchange::closet_rate(std::string& date)
 {
     std::map<std::string, double>::const_iterator it = BitcoinExchange::_rates.lower_bound(date);
     if (it->first == date || it == BitcoinExchange::_rates.begin())
@@ -178,7 +178,7 @@ double BitcoinExchange::closet_rate(std::string &date)
     return it->second;
 }
 
-void BitcoinExchange::exchange(std::string &file)
+void BitcoinExchange::exchange(std::string& file)
 {
     std::ifstream infile(file);
     if (!infile.is_open())
@@ -201,6 +201,8 @@ void BitcoinExchange::exchange(std::string &file)
             continue;
         }
         std::string date = line.substr(0, line.find('|'));
+        // remove spaces from start of  date
+        date.erase(0, date.find_first_not_of(' '));
         if (date.at(date.length() - 2) == ' ')
         {
             std::cerr << "Error: bad input = > " << line << std::endl;
